@@ -34,6 +34,10 @@ public class MyTest {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         Student student = (Student) applicationContext.getBean("student");
         System.out.println(student.getUsername());
+
+        applicationContext.setAllowCircularReferences(true);
+        applicationContext.setAllowBeanDefinitionOverriding(true);
+        applicationContext.refresh();//重新刷新
     }
 
     public void test3() {

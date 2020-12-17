@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--  扫描指定路径下的类  -->
+    <context:component-scan base-package="com.cn.allen.bean"/>
     <bean id="student" class="com.cn.allen.bean.Student"/>
+
+<!--  abstract 属性的应用,parent和son在bean实例化时，会合并成一个  -->
+    <bean id="parent" name="parent2,parent3" class="com.cn.allen.bean.Parent" abstract="true">
+        <property name="username" value="parentName"/>
+    </bean>
+    <bean id="son" class="com.cn.allen.bean.Son" parent="parent">
+        <property name="age" value="20"/>
+    </bean>
+
+<!--  autowire-candidate:false 标记bean不能使用自动装配的方式注入  -->
+    <bean id="accountService" class="com.cn.allen.service.AccountServiceImpl"
+          scope="singleton" autowire-candidate="true"/>
+
+<!--  lazy-init:true 容器初始化的时不会实例化，只有使用的时候才会生成实例  -->
+    <bean id="woman" class="com.cn.allen.bean.Women" lazy-init="false"/>
+
+    <bean id="factoryBean" class="com.cn.allen.bean.FactoryBean" autowire="byName">
+        <description>com.cn.allen.bean.FactoryBean</description>
+        <meta key="key1" value="value1"/>
+    </bean>
+
+<!--  init-method="initMethod" destroy-method="destroyMethod"  -->
+<!--  factory-bean="factoryBean" factory-method="factoryMethod" 指定工厂创建bean实例，
+  即创建实例化的工作自己来完成 -->
+    <bean id="propertyClass" class="com.cn.allen.bean.PropertyClass" lazy-init="false"
+     factory-bean="factoryBean" factory-method="factoryMethod"/>
 </beans>

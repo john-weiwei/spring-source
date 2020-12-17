@@ -1,11 +1,16 @@
 package com.cn.allen.test;
 
 
+import com.cn.allen.bean.PropertyClass;
+import com.cn.allen.bean.Son;
 import com.cn.allen.bean.Student;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author:ZhangWeiWei
@@ -36,12 +41,26 @@ public class MyTest {
         System.out.println(student.getUsername());
     }
 
+    @Test
+    public void test6() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        Son student = (Son) applicationContext.getBean("son");
+        System.out.println(student.getUsername());
+    }
+
+    @Test
     public void test3() {
-        //文件上下文，基本不用
-        new FileSystemXmlApplicationContext("");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        PropertyClass student = (PropertyClass) applicationContext.getBean("propertyClass");
     }
 
     public void test4() {
         //内嵌的web上下文
+    }
+
+    @Test
+    public void test5() {
+
+
     }
 }

@@ -1,6 +1,7 @@
 package com.cn.allen.test;
 
 
+import com.cn.allen.bean.DecoratorBean;
 import com.cn.allen.bean.Student;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -47,5 +48,12 @@ public class MyTest {
 
     public void test4() {
         //内嵌的web上下文
+    }
+
+    @Test
+    public void test5() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        DecoratorBean student = (DecoratorBean) applicationContext.getBean("decoratorBean");
+        System.out.println(student.getUsername());
     }
 }

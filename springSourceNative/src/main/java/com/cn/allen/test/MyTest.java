@@ -1,23 +1,28 @@
 package com.cn.allen.test;
 
 
-import com.cn.allen.bean.PropertyClass;
-import com.cn.allen.bean.Son;
-import com.cn.allen.bean.Student;
+import com.cn.allen.bean.*;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * @Author:ZhangWeiWei
  * @Date:2020/11/27
  * @Description:
  */
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:spring.xml"})
 public class MyTest {
+
+    @Autowired
+    private ShowSexClass showSexClass;
 
     /**
      * spring 扫描注解的应用上下文
@@ -60,7 +65,17 @@ public class MyTest {
 
     @Test
     public void test5() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        ShowSexClass showSexClass = (ShowSexClass) applicationContext.getBean("person");
+        showSexClass.showSex();
+    }
 
 
+    @Test
+    public void test7() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        OriginClass showSexClass = (OriginClass) applicationContext.getBean("originClass");
+        showSexClass.method("xxx");
+        showSexClass.method(new ArrayList());
     }
 }

@@ -24,7 +24,7 @@
           scope="singleton" autowire-candidate="true"/>
 
 <!--  lazy-init:true 容器初始化的时不会实例化，只有使用的时候才会生成实例  -->
-    <bean id="woman" class="com.cn.allen.bean.Women" lazy-init="false"/>
+    <bean id="women" class="com.cn.allen.bean.Women" lazy-init="false"/>
 
     <bean id="factoryBean" class="com.cn.allen.bean.FactoryBean" autowire="byName">
         <description>com.cn.allen.bean.FactoryBean</description>
@@ -36,4 +36,23 @@
   即创建实例化的工作自己来完成 -->
     <bean id="propertyClass" class="com.cn.allen.bean.PropertyClass" lazy-init="false"
      factory-bean="factoryBean" factory-method="factoryMethod"/>
+
+<!--  <lookup-method name="getPerson" bean="women"/> 在一个指定类里面找到这个方法  -->
+    <bean id="person" class="com.cn.allen.bean.ShowSexClass">
+        <lookup-method name="getPerson" bean="women"/>
+    </bean>
+
+<!--   <replaced-method name="method" replacer="replaceClass"/>
+        在不改变原有代码的前提下，对功能进行扩展  -->
+    <bean id="replaceClass" class="com.cn.allen.bean.ReplaceClass"/>
+    <bean id="originClass" class="com.cn.allen.bean.OriginClass">
+        <replaced-method name="method" replacer="replaceClass">
+            <arg-type match="java.lang.String"/>
+        </replaced-method>
+    </bean>
+
+    <bean id="constructorArgBean" class="com.cn.allen.bean.ConstructorArgBean">
+        <constructor-arg name="username" value="123" index="0" type="java.lang.String"/>
+        <constructor-arg name="password" value="456" index="1" type="java.lang.String"/>
+    </bean>
 </beans>

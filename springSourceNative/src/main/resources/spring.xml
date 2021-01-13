@@ -7,9 +7,15 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--    import 标签-->
+    <!--<import resource=""/>-->
+
+<!--    alias 标签-->
+    <!--    <alias name="" alias=""/>-->
 <!--  扫描指定路径下的类  -->
-    <context:component-scan base-package="com.cn.allen.bean"/>
-    <bean id="student" class="com.cn.allen.bean.Student"/>
+<!--  @Service  @Controller 不加扫描路径，就不认识注解  -->
+    <context:component-scan base-package="com.cn.allen"/>
+<!--    <bean id="student" class="com.cn.allen.bean.Student"/>-->
 
 <!--  abstract 属性的应用,parent和son在bean实例化时，会合并成一个  -->
     <bean id="parent" name="parent2,parent3" class="com.cn.allen.bean.Parent" abstract="true">
@@ -55,4 +61,6 @@
         <constructor-arg name="username" value="123" index="0" type="java.lang.String"/>
         <constructor-arg name="password" value="456" index="1" type="java.lang.String"/>
     </bean>
+
+    <bean id="initMethodBean" class="com.cn.allen.bean.InitMethodBean" init-method="initMethod"/>
 </beans>

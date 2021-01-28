@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 @Service("accountServiceImpl")
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 }

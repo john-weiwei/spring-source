@@ -1,8 +1,10 @@
 package com.cn.allen.aopbean.aspectj;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +30,10 @@ public class AspectAnnotation {
         String he = "增强advice";
         System.out.println("执行后置通知");
         return result;
+    }
+
+    @Before("pic1()")
+    public void before1(JoinPoint joinPoint) {
+        System.out.println("前置通知");
     }
 }

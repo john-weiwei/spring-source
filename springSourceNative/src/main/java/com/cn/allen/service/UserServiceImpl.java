@@ -1,6 +1,7 @@
 package com.cn.allen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 // @Primary：有多个类实现同一个接口的前提下，会优先使用加了@Primary注解的类
+@Lazy
 @Primary
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {

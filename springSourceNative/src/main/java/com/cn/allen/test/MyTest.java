@@ -8,6 +8,7 @@ import com.cn.allen.factorybean.FactoryBeanDemo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.StaticListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -91,7 +92,9 @@ public class MyTest {
     @Test
     public void test8() {
         applicationContext = new AnnotationConfigApplicationContext("com.cn.allen");
-        BeanClass student = (BeanClass) applicationContext.getBean("beanClass");
+//        BeanClass student = (BeanClass) applicationContext.getBean("beanClass");
+        StaticListableBeanFactory staticListableBeanFactory = new StaticListableBeanFactory();
+        Student student = (Student) staticListableBeanFactory.getBean("student");
         System.out.println(student.getUsername());
     }
 

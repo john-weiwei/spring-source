@@ -1,0 +1,4 @@
+
+事务：
+    可以控制一个Connection对象中的N个DML语句的同时提交和回滚
+    Connection 连接对象和事务的一一绑定的

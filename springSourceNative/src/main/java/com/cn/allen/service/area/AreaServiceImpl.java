@@ -45,13 +45,13 @@ public class AreaServiceImpl implements AreaService {
     @Override
     public List<ConsultConfigArea> queryAreaFromDB(Map param) {
         logger.info("================从mysql里面查询数据 事务1========================");
-        List<ConsultConfigArea> areas = commonMapper.queryAreaByAreaCode(param);
+//        List<ConsultConfigArea> areas = commonMapper.queryAreaByAreaCode(param);
 
 //        new Thread(() -> areaService.queryAreaFromRedisOne(null)).start();
 
 //        areaService.queryAreaFromRedisOne(null);
-        return areas;
-//        return "OK";
+//        return areas;
+        return null;
     }
 
     @Transactional
@@ -81,5 +81,6 @@ public class AreaServiceImpl implements AreaService {
         int i = commonMapper.addArea(area);
         System.out.println("添加成功");
         return i;
+//        return 1;
     }
 }

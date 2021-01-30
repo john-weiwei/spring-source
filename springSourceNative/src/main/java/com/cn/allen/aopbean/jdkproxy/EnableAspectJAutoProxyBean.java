@@ -1,5 +1,6 @@
 package com.cn.allen.aopbean.jdkproxy;
 
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
  * 1、先扫描Service注解，再扫描Import注解
  */
 @Service
+@EnableAspectJAutoProxy(proxyTargetClass = false,exposeProxy = true)
 // 等同于 <aop:aspectj-autoproxy/>
-@org.springframework.context.annotation.EnableAspectJAutoProxy
-public class EnableAspectJAutoProxy {
+public class EnableAspectJAutoProxyBean {
 }

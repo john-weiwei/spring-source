@@ -92,9 +92,7 @@ public class MyTest {
     @Test
     public void test8() {
         applicationContext = new AnnotationConfigApplicationContext("com.cn.allen");
-//        BeanClass student = (BeanClass) applicationContext.getBean("beanClass");
-        StaticListableBeanFactory staticListableBeanFactory = new StaticListableBeanFactory();
-        Student student = (Student) staticListableBeanFactory.getBean("student");
+        BeanClass student = (BeanClass) applicationContext.getBean("beanClass");
         System.out.println(student.getUsername());
     }
 

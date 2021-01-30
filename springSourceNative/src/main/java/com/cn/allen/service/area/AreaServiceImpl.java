@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@Service
 @PropertySource("classpath:config/core/core.properties")
+@Service
 public class AreaServiceImpl implements AreaService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,18 +41,18 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaService areaService;
 
-//    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
-    @Transactional
+//    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
     @Override
     public List<ConsultConfigArea> queryAreaFromDB(Map param) {
         logger.info("================从mysql里面查询数据 事务1========================");
-//        List<ConsultConfigArea> areas = commonMapper.queryAreaByAreaCode(param);
+        List<ConsultConfigArea> areas = commonMapper.queryAreaByAreaCode(param);
 
 //        new Thread(() -> areaService.queryAreaFromRedisOne(null)).start();
 
-//        areaService.queryAreaFromRedisOne(null);
-//        return areas;
-        return null;
+        areaService.queryAreaFromRedisOne(null);
+        return areas;
+//        return null;
     }
 
     @Transactional
@@ -75,7 +76,7 @@ public class AreaServiceImpl implements AreaService {
 
 //    @TargetSource("ds2")
 //    @Transactional(propagation = Propagation.REQUIRED)
-    @Transactional
+//    @Transactional
     @Override
     public int addArea(ConsultConfigArea area) {
         int i = commonMapper.addArea(area);

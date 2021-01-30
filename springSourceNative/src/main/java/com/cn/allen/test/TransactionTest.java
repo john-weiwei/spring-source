@@ -23,25 +23,24 @@ public class TransactionTest {
     @Before
     public void before() {
         applicationContext = new AnnotationConfigApplicationContext(ComponentScanBean.class);
-        System.out.println("执行前置增强");
-    }
-
-    @Test
-    public void addAreaTest() {
-        AreaService bean = applicationContext.getBean(AreaService.class);
-        ConsultConfigArea area = new ConsultConfigArea();
-        area.setAreaCode("XJ12");
-        area.setAreaName("XJ12");
-        area.setState("2");
-        bean.addArea(area);
     }
 
     @Test
     public void test1() {
         AreaService bean = applicationContext.getBean(AreaService.class);
         Map param = new HashMap();
-        param.put("areaCode","XJ14");
+        param.put("areaCode","HB1");
         bean.queryAreaFromDB(param);
+    }
+
+    @Test
+    public void addAreaTest() {
+        AreaService bean = applicationContext.getBean(AreaService.class);
+        ConsultConfigArea area = new ConsultConfigArea();
+        area.setAreaCode("XJ14");
+        area.setAreaName("XJ14");
+        area.setState("1");
+        bean.addArea(area);
     }
 
 }

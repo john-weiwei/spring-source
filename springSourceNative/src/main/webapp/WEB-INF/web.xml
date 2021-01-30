@@ -4,4 +4,35 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            <!--加载spring配置-->
+            classpath:spring.xml
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>ServicePlatform.root</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <!--<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
+    </listener>
+
+<!--    <servlet>-->
+<!--        <servlet-name>spring-dispatcher</servlet-name>-->
+<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+<!--        <init-param>-->
+<!--            &lt;!&ndash;springmvc的配置文件&ndash;&gt;-->
+<!--            <param-name>contextConfigLocation</param-name>-->
+<!--            <param-value>classpath:spring-dispatcher.xml</param-value>-->
+<!--        </init-param>-->
+<!--        <load-on-startup>0</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>spring-dispatcher</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>

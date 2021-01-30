@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-@ComponentScan(value = "com.cn.allen")
+@ComponentScan(value = "com.cn")
 public class ComponentScanBean {
 }

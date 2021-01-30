@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -26,7 +27,15 @@ import java.util.Map;
 *
 * */
 
+/**
+ * @Bean注解在@Configuration和@Component注解中使用的区别
+ * @Configuration:在@Configuration注解的类是经过cglib增强的，类里面的@Bean都是通过经过增强的类的代理去
+ * 拿到的，获取到的是同一个实例。
+ * @Component：在@Bean的方法中调用@Bean注解的其他方法，每次都有都是不同的实例
+ */
+
 //@Configuration
+@Component
 @PropertySource("classpath:config/core/core.properties")
 public class DataSourceConfiguration {
 
@@ -42,14 +51,14 @@ public class DataSourceConfiguration {
     @Resource
     Environment environment;
 
-//    @Bean
+    @Bean
     public DataSource comboPooledDataSource() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         try {
-            comboPooledDataSource.setDriverClass(driverClass);
-            comboPooledDataSource.setJdbcUrl(jdbcUrl);
-            comboPooledDataSource.setUser(user);
-            comboPooledDataSource.setPassword(password);
+            comboPooledDataSource.setDriverClass(environment.getProperty("jdbc.driverClassName"));
+            comboPooledDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
+            comboPooledDataSource.setUser(environment.getProperty("jdbc.username"));
+            comboPooledDataSource.setPassword(environment.getProperty("jdbc.password"));
             comboPooledDataSource.setMinPoolSize(10);
             comboPooledDataSource.setMaxPoolSize(100);
             comboPooledDataSource.setMaxIdleTime(1800);
@@ -64,38 +73,39 @@ public class DataSourceConfiguration {
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
+
         return comboPooledDataSource;
     }
 
 //    @Bean
-    public DataSource dynamicDataSource() {
-        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        try {
-            comboPooledDataSource.setDriverClass(driverClass);
-            comboPooledDataSource.setJdbcUrl(jdbcUrl);
-            comboPooledDataSource.setUser(user);
-            comboPooledDataSource.setPassword(password);
-            comboPooledDataSource.setMinPoolSize(10);
-            comboPooledDataSource.setMaxPoolSize(100);
-            comboPooledDataSource.setMaxIdleTime(1800);
-            comboPooledDataSource.setAcquireIncrement(3);
-            comboPooledDataSource.setMaxStatements(1000);
-            comboPooledDataSource.setInitialPoolSize(10);
-            comboPooledDataSource.setIdleConnectionTestPeriod(60);
-            comboPooledDataSource.setAcquireRetryAttempts(30);
-            comboPooledDataSource.setBreakAfterAcquireFailure(false);
-            comboPooledDataSource.setTestConnectionOnCheckout(false);
-            comboPooledDataSource.setAcquireRetryDelay(100);
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
-
-        Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put("ds1",comboPooledDataSource);
-
-        DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        dynamicDataSource.setTargetDataSources(targetDataSources);
-        dynamicDataSource.setDefaultTargetDataSource(comboPooledDataSource);
-        return dynamicDataSource;
-    }
+//    public DataSource dynamicDataSource() {
+//        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+//        try {
+//            comboPooledDataSource.setDriverClass(driverClass);
+//            comboPooledDataSource.setJdbcUrl(jdbcUrl);
+//            comboPooledDataSource.setUser(user);
+//            comboPooledDataSource.setPassword(password);
+//            comboPooledDataSource.setMinPoolSize(10);
+//            comboPooledDataSource.setMaxPoolSize(100);
+//            comboPooledDataSource.setMaxIdleTime(1800);
+//            comboPooledDataSource.setAcquireIncrement(3);
+//            comboPooledDataSource.setMaxStatements(1000);
+//            comboPooledDataSource.setInitialPoolSize(10);
+//            comboPooledDataSource.setIdleConnectionTestPeriod(60);
+//            comboPooledDataSource.setAcquireRetryAttempts(30);
+//            comboPooledDataSource.setBreakAfterAcquireFailure(false);
+//            comboPooledDataSource.setTestConnectionOnCheckout(false);
+//            comboPooledDataSource.setAcquireRetryDelay(100);
+//        } catch (PropertyVetoException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Map<Object, Object> targetDataSources = new HashMap<>();
+//        targetDataSources.put("ds1",comboPooledDataSource);
+//
+//        DynamicDataSource dynamicDataSource = new DynamicDataSource();
+//        dynamicDataSource.setTargetDataSources(targetDataSources);
+//        dynamicDataSource.setDefaultTargetDataSource(comboPooledDataSource);
+//        return dynamicDataSource;
+//    }
 }

@@ -17,29 +17,25 @@ import javax.sql.DataSource;
  * @Description:
  * 配置事务管理器
  */
-//@Enable...肯定有一个@Import标签
-//@Component
-@EnableTransactionManagement
-@MapperScan(basePackages = "com.cn.allen.dao",annotationClass = Repository.class)
+@Component
+@EnableTransactionManagement(proxyTargetClass = false)
+@MapperScan(basePackages = {"com.cn.allen.dao"},annotationClass = Repository.class)
 public class EnableTransactionManagementBean {
 
-//    @Bean
-    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource){
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource) {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         return sqlSessionFactoryBean;
     }
 
-    /**
-     * 这样也是可以的
-     * @param dataSource
-     * @return
-     */
-//    @Bean
-//    public PlatformTransactionManager annotationDrivenTransactionManager(DataSource dataSource) {
-//        DataSourceTransactionManager dtm = new DataSourceTransactionManager();
-//        dtm.setDataSource(dataSource);
-//        return dtm;
-//    }
-
+    /*
+     * 这样也可以
+     * */
+    @Bean
+    public PlatformTransactionManager annotationDrivenTransactionManager(DataSource dataSource) {
+        DataSourceTransactionManager dtm = new DataSourceTransactionManager();
+        dtm.setDataSource(dataSource);
+        return dtm;
+    }
 }

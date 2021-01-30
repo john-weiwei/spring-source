@@ -41,8 +41,8 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaService areaService;
 
-//    @Transactional
-    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
+//    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
+    @Transactional
     @Override
     public List<ConsultConfigArea> queryAreaFromDB(Map param) {
         logger.info("================从mysql里面查询数据 事务1========================");

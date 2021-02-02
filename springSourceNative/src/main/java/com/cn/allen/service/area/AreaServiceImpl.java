@@ -76,10 +76,11 @@ public class AreaServiceImpl implements AreaService {
 
 //    @TargetSource("ds2")
 //    @Transactional(propagation = Propagation.REQUIRED)
-//    @Transactional
+    @Transactional
     @Override
     public int addArea(ConsultConfigArea area) {
         int i = commonMapper.addArea(area);
+        if (true) throw new RuntimeException("抛异常了");
         System.out.println("添加成功");
         return i;
 //        return 1;

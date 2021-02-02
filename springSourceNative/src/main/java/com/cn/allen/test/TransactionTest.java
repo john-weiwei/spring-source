@@ -2,7 +2,9 @@ package com.cn.allen.test;
 
 import com.cn.allen.bean.ComponentScanBean;
 import com.cn.allen.pojo.ConsultConfigArea;
+import com.cn.allen.pojo.ZgGoods;
 import com.cn.allen.service.area.AreaService;
+import com.cn.allen.service.transaction.TransationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -41,6 +43,23 @@ public class TransactionTest {
         area.setAreaName("XJ14");
         area.setState("1");
         bean.addArea(area);
+    }
+
+    @Test
+    public void propagationTest() {
+        String areaStr = "HN1";
+        String goodsStr = "iphone 8";
+        TransationService transationService = applicationContext.getBean(TransationService.class);
+        ConsultConfigArea area = new ConsultConfigArea();
+        area.setAreaCode(areaStr);
+        area.setAreaName(areaStr);
+        area.setState("1");
+
+        ZgGoods zgGoods = new ZgGoods();
+        zgGoods.setGoodCode(goodsStr);
+        zgGoods.setGoodName(goodsStr);
+        zgGoods.setCount(100);
+        transationService.transation(area,zgGoods);
     }
 
 }

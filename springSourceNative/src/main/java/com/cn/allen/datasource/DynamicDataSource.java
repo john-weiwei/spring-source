@@ -5,6 +5,10 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
 
+    /**
+     * 钩子方法
+     * @return
+     */
     @Override
     protected Object determineCurrentLookupKey() {
         String ds = DynamicDataSourceHolder.getDs();

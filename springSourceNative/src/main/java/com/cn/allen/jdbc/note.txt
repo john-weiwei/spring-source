@@ -2,3 +2,17 @@
 事务：
     可以控制一个Connection对象中的N个DML语句的同时提交和回滚
     Connection 连接对象和事务的一一绑定的
+
+传播属性是用来控制事务逻辑的
+
+PROPAGATION_REQUIRED：如果没有事务，就创建一个事务，如果已经存在一个事务，就加入到这个事务中
+
+PROPAGATION_REQUIRES_NEW：新建事务，如果存在事务，则将事务挂起
+
+PROPAGATION_NESTED：如果存在事务，则在嵌套事务内执行，如果没有事务，则执行与PROPAGATION_REQUIRED类似的操作
+
+必须是同一个线程ID
+
+
+
+

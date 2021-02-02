@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  * 配置事务管理器
  */
 @Component
-@EnableTransactionManagement(proxyTargetClass = false)
+@EnableTransactionManagement
 @MapperScan(basePackages = {"com.cn.allen.dao"},annotationClass = Repository.class)
 public class EnableTransactionManagementBean {
 

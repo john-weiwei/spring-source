@@ -41,8 +41,12 @@ public class TransationServiceImpl implements TransationService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void transation(ConsultConfigArea area, ZgGoods zgGoods) {
-        areaService.addArea(area);
-        goodsService.addGoods(zgGoods);
+        try {
+            areaService.addArea(area);
+            goodsService.addGoods(zgGoods);
+        } catch (Exception e) {
+
+        }
     }
     //提交事务
 

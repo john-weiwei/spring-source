@@ -10,9 +10,10 @@ PROPAGATION_REQUIRED：如果没有事务，就创建一个事务，如果已经
 PROPAGATION_REQUIRES_NEW：新建事务，如果存在事务，则将事务挂起
 
 PROPAGATION_NESTED：如果存在事务，则在嵌套事务内执行，如果没有事务，则执行与PROPAGATION_REQUIRED类似的操作
+PROPAGATION_NESTED和最外层事务的事务对象不是同一个，但事务的连接是同一个
 
 必须是同一个线程ID
 
-
+传播属性控制的是切面的第一个事务的特征
 
 

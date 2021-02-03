@@ -41,14 +41,15 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaService areaService;
 
-//    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
+    //    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, rollbackFor = RuntimeException.class)
     @Transactional
     @Override
     public List<ConsultConfigArea> queryAreaFromDB(Map param) {
         logger.info("================从mysql里面查询数据 事务1========================");
         List<ConsultConfigArea> areas = commonMapper.queryAreaByAreaCode(param);
 
-//        new Thread(() -> areaService.queryAreaFromRedisOne(null)).start();
+        //不是同一个线程，新建一个事务
+        new Thread(() -> areaService.queryAreaFromRedisOne(null)).start();
 
         areaService.queryAreaFromRedisOne(null);
         return areas;
@@ -74,15 +75,15 @@ public class AreaServiceImpl implements AreaService {
     }
 
 
-//    @TargetSource("ds2")
+    //    @TargetSource("ds2")
 //    @Transactional(propagation = Propagation.REQUIRED)
-    @Transactional
+    @Transactional(propagation = Propagation.NESTED)
     @Override
     public int addArea(ConsultConfigArea area) {
         int i = commonMapper.addArea(area);
-        if (true) throw new RuntimeException("抛异常了");
+//        if (true) throw new RuntimeException("抛异常了");
         System.out.println("添加成功");
-        return i;
+        return 0;
 //        return 1;
     }
 }

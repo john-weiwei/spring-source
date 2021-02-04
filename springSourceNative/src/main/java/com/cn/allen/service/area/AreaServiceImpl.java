@@ -76,7 +76,6 @@ public class AreaServiceImpl implements AreaService {
 
 
     //    @TargetSource("ds2")
-//    @Transactional(propagation = Propagation.REQUIRED)
     @Transactional(propagation = Propagation.NESTED)
     @Override
     public int addArea(ConsultConfigArea area) {
@@ -84,6 +83,6 @@ public class AreaServiceImpl implements AreaService {
 //        if (true) throw new RuntimeException("抛异常了");
         System.out.println("添加成功");
         return 0;
-//        return 1;
+//        return i;
     }
 }

@@ -51,7 +51,7 @@ public class DataSourceConfiguration {
     @Resource
     Environment environment;
 
-//    @Bean
+    @Bean
     public DataSource comboPooledDataSource() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         try {
@@ -77,7 +77,7 @@ public class DataSourceConfiguration {
         return comboPooledDataSource;
     }
 
-    @Bean
+//    @Bean
     public DataSource dynamicDataSource() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         try {

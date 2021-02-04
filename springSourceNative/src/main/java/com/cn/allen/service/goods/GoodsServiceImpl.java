@@ -16,7 +16,7 @@ public class GoodsServiceImpl implements GoodsService {
     CommonMapper commonMapper;
 
 //    @TargetSource("ds1")
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public void addGoods(ZgGoods zgGoods) {
         int i = commonMapper.addGood(zgGoods);
@@ -24,6 +24,7 @@ public class GoodsServiceImpl implements GoodsService {
         //传递到外层方法，即被 transation方法处理，外层事务Propagation.REQUIRED捕获
         //所有外层事务发生回滚，即addArea和addGoods都没有数据
         if (true) throw new RuntimeException("抛异常了");
+//        int j = 10 / 0;
         System.out.println("添加商品成功");
     }
 

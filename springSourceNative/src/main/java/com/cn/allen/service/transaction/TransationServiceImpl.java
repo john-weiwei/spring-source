@@ -36,17 +36,13 @@ public class TransationServiceImpl implements TransationService {
 //    private TransactionTemplate transactionTemplate;
 
 
-//    @TargetSource("ds1")
+    //    @TargetSource("ds1")
     //开启了事务
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void transation(ConsultConfigArea area, ZgGoods zgGoods) {
-        try {
-            areaService.addArea(area);
-            goodsService.addGoods(zgGoods);
-        } catch (Exception e) {
-
-        }
+        areaService.addArea(area);
+        goodsService.addGoods(zgGoods);
     }
     //提交事务
 
@@ -85,7 +81,7 @@ public class TransationServiceImpl implements TransationService {
 
         try {
             System.out.println("业务代码");
-        }catch (Exception e) {
+        } catch (Exception e) {
             platformTransactionManager.rollback(transaction);
         }
 

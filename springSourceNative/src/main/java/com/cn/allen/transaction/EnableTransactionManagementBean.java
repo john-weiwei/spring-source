@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 
@@ -37,5 +38,12 @@ public class EnableTransactionManagementBean {
         DataSourceTransactionManager dtm = new DataSourceTransactionManager();
         dtm.setDataSource(dataSource);
         return dtm;
+    }
+
+    @Bean
+    public TransactionTemplate transactionTemplate(PlatformTransactionManager platformTransactionManager) {
+        TransactionTemplate transactionTemplate = new TransactionTemplate();
+        transactionTemplate.setTransactionManager(platformTransactionManager);
+        return transactionTemplate;
     }
 }

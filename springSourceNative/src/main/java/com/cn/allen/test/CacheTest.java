@@ -27,4 +27,18 @@ public class CacheTest {
         cacheService.queryData("XJ12");
     }
 
+    @Test
+    public void test2() {
+        CacheService cacheService = applicationContext.getBean(CacheService.class);
+        cacheService.putCache("XJ13");
+    }
+
+    @Test
+    public void test3() {
+        CacheService cacheService = applicationContext.getBean(CacheService.class);
+        cacheService.putCache("XJ13");
+
+        cacheService.getCache("XJ13");
+    }
+
 }

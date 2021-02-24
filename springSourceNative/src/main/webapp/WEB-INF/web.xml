@@ -21,18 +21,19 @@
         <!--<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
     </listener>
 
-<!--    <servlet>-->
-<!--        <servlet-name>spring-dispatcher</servlet-name>-->
-<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-<!--        <init-param>-->
-<!--            &lt;!&ndash;springmvc的配置文件&ndash;&gt;-->
-<!--            <param-name>contextConfigLocation</param-name>-->
-<!--            <param-value>classpath:spring-dispatcher.xml</param-value>-->
-<!--        </init-param>-->
-<!--        <load-on-startup>0</load-on-startup>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>spring-dispatcher</servlet-name>-->
-<!--        <url-pattern>/</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <!--springmvc的配置文件-->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-dispatcher.xml</param-value>
+        </init-param>
+<!--      load-on-startup 参数值表示随着容器的启动而启动  -->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>

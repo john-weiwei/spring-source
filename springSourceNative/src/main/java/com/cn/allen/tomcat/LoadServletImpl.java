@@ -1,5 +1,7 @@
 package com.cn.allen.tomcat;
 
+import org.springframework.stereotype.Service;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 

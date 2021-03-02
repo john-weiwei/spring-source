@@ -1,5 +1,7 @@
 package com.cn.allen.mvc;
 
+import com.cn.allen.interceptor.UserInterceptor;
+import com.cn.allen.interceptor.UserInterceptor1;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -21,7 +23,8 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //设置拦截器
-//        registry.addInterceptor("定义的拦截器").addPathPatterns("拦截路径").excludePathPatterns("排除的路径");
+        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/user/**");
+        registry.addInterceptor(new UserInterceptor1()).addPathPatterns("/user/**");
     }
 
     @Override

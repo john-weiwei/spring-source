@@ -7,7 +7,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            <!--加载spring配置-->
+            <!--加载spring配置，首先加载一个spring容器-->
             classpath:spring.xml
         </param-value>
     </context-param>
@@ -25,15 +25,17 @@
         <servlet-name>spring-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
-            <!--springmvc的配置文件-->
+            <!--springmvc的配置文件，然后再加载一个DispatcherServlet容器 -->
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-dispatcher.xml</param-value>
         </init-param>
-<!--      load-on-startup 参数值表示随着容器的启动而启动  -->
+<!--      load-on-startup 参数值表示随着容器的启动而启动，数值越小，优先级越高  -->
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>spring-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+<!--  这样在spring里面就有两个容器，一个是spring容器，一个是DispatcherServlet容器（即Servlet容器）  -->
 </web-app>

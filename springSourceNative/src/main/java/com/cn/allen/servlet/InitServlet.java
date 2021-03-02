@@ -21,8 +21,8 @@ public class InitServlet extends HttpServlet {
         System.out.println("====doGet===");
         PrintWriter writer = resp.getWriter();
         writer.println("<h1>Allen</h1>");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/ok.jsp");
-        dispatcher.forward(req,resp);
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/ok.jsp");
+//        dispatcher.forward(req,resp);
     }
 
     @Override

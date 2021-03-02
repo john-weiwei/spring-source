@@ -28,16 +28,20 @@ public class SpringApplication {
             //设置端口号
             tomcatServer.setPort(9090);
             //读取项目路径，加载静态资源
-            String basePath = System.getProperty("user.dir") + File.separator + "springSourceNative" + File.separator;
+            String basePath = System.getProperty("user.dir") + File.separator;
             tomcatServer.getHost().setAppBase(basePath);
             //改变文件读取路径，从resources目录下读取文件
-            StandardContext scx = (StandardContext) tomcatServer.addWebapp("/" , basePath +"src"+File.separator+"main"+File.separator+"resource");
+            StandardContext scx = (StandardContext) tomcatServer.addWebapp("/" , basePath +"src"+File.separator+"main"+File.separator+"resources");
             //禁止重新载入
             scx.setReloadable(false);
+            //Class文件读取地址
             File additionWebInfoClasses = new File("springSourceNative/target/classes");
+            //创建WebRoot
             WebResourceRoot resource = new StandardRoot(scx);
+            //tomcat内部读取Classes文件
             resource.addPreResources(new DirResourceSet(resource,"/springSourceNative/WEB-INF/classes",additionWebInfoClasses.getAbsolutePath(),"/"));
             tomcatServer.start();
+            //异步等待请求执行
             tomcatServer.getServer().await();
         } catch (ServletException e) {
             e.printStackTrace();

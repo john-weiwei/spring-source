@@ -3,9 +3,10 @@ package com.cn.allen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author:ZhangWeiWei
@@ -43,5 +44,40 @@ public class CommonController {
     @ResponseBody
     public String getUserInfo() {
         return "xxx";
+    }
+
+    /*
+     * 动态url
+     * url中带参数，
+     * 形如：http://localhost:9090/common/pathVariableTest/jack/123
+     * http://localhost:9090/common/pathVariableTest/james/234
+     * http://localhost:9090/common/pathVariableTest/peter/866
+     * http://localhost:9090/common/pathVariableTest/deer/866
+     * */
+    @RequestMapping("/pathVariableTest/{id}/{password}")
+    public @ResponseBody
+    String pathVariableTest(@PathVariable("id") String username, @PathVariable String password) {
+        System.out.println("=======pathVariableTest:username-->" + username + "-->password:" + password);
+        return username + "->" + password;
+    }
+
+//    @ModelAttribute("allenName")
+    public Map<String,String> getObj(@RequestParam("name")String name) {
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("name",name);
+        return map;
+    }
+
+    @RequestMapping("getAllenInfo")
+    @ResponseBody
+    public String getAllenInfo(@ModelAttribute("allenName")Map<String,String> info) {
+        return info.get("name");
+    }
+
+    @RequestMapping("testNull")
+    @ResponseBody
+    public String nullException() {
+        int i = 3/0;
+        return "模拟异常";
     }
 }

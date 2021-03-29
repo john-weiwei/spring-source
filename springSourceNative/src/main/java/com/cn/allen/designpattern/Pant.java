@@ -8,12 +8,16 @@ package com.cn.allen.designpattern;
 public class Pant implements Inter {
     private String flag = "pant";
     @Override
-    public void show() {
-        System.out.println("show pants");
+    public void show(String value) {
+        System.out.println("show pants"+value);
     }
 
     @Override
     public boolean support(String value) {
         return flag.equalsIgnoreCase(value);
+    }
+
+    public Pant(String flag) {
+        this.flag = flag;
     }
 }

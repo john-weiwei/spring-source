@@ -1,3 +1,4 @@
+springSourceNative/out/*
 .DS_Store
 tignore
 HELP.md

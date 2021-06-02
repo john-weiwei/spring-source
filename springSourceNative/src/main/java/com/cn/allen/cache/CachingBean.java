@@ -17,8 +17,8 @@ import java.util.List;
  * @Date:2021/2/5
  * @Description:
  */
-@Component
-@EnableCaching
+//@Component
+//@EnableCaching
 public class CachingBean {
 
 

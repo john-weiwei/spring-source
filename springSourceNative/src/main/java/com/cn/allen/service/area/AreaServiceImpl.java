@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@PropertySource("classpath:config/core/core.properties")
+//@PropertySource("classpath:config/core/core.properties")
 @Service
 public class AreaServiceImpl implements AreaService {
 

@@ -34,9 +34,9 @@ import java.util.Map;
  * @Component：在@Bean的方法中调用@Bean注解的其他方法，每次都有都是不同的实例
  */
 
-//@Configuration
+@Configuration
 @Component
-@PropertySource("classpath:config/core/core.properties")
+//@PropertySource("classpath:config/core/core.properties")
 public class DataSourceConfiguration {
 
     @Value("${jdbc.driverClassName}")
@@ -48,17 +48,22 @@ public class DataSourceConfiguration {
     @Value("${jdbc.password}")
     private String password;
 
-    @Resource
+//    @Resource
     Environment environment;
 
     @Bean
     public DataSource comboPooledDataSource() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         try {
-            comboPooledDataSource.setDriverClass(environment.getProperty("jdbc.driverClassName"));
-            comboPooledDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
-            comboPooledDataSource.setUser(environment.getProperty("jdbc.username"));
-            comboPooledDataSource.setPassword(environment.getProperty("jdbc.password"));
+//            comboPooledDataSource.setDriverClass(environment.getProperty("jdbc.driverClassName"));
+//            comboPooledDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
+//            comboPooledDataSource.setUser(environment.getProperty("jdbc.username"));
+//            comboPooledDataSource.setPassword(environment.getProperty("jdbc.password"));
+
+            comboPooledDataSource.setDriverClass(driverClass);
+            comboPooledDataSource.setJdbcUrl(jdbcUrl);
+            comboPooledDataSource.setUser(user);
+            comboPooledDataSource.setPassword(password);
             comboPooledDataSource.setMinPoolSize(10);
             comboPooledDataSource.setMaxPoolSize(100);
             comboPooledDataSource.setMaxIdleTime(1800);

@@ -13,6 +13,7 @@
         <module>rpcClient</module>
         <module>rpcServer</module>
         <module>nio</module>
+        <module>nettyBasic</module>
     </modules>
 
     <properties>
@@ -23,6 +24,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.28.Final</version>
+        </dependency>
         <!--     spring 核心依赖   -->
         <dependency>
             <groupId>org.springframework</groupId>

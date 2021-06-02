@@ -12,6 +12,7 @@
         <module>nettyStu</module>
         <module>rpcClient</module>
         <module>rpcServer</module>
+        <module>nio</module>
     </modules>
 
     <properties>

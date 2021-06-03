@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @Date:2021/1/5
  * @Description:
  */
-@Service
+//@Service
 public class CircularRetA {
 
     public CircularRetA() {

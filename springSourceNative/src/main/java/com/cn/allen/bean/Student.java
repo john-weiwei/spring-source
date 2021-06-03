@@ -12,5 +12,5 @@ import org.springframework.stereotype.Service;
 @Data
 public class Student {
     private String username = "Allen";
-    private String password;
+    private String password = "123456";
 }

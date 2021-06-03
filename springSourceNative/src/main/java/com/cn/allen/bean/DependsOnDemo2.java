@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @Date:2021/1/6
  * @Description:
  */
-@Component(value = "dependsOn2")
+//@Component(value = "dependsOn2")
 public class DependsOnDemo2 {
 
     public DependsOnDemo2() {

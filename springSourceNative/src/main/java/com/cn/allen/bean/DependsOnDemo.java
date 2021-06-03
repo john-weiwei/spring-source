@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Date:2021/1/6
  * @Description:
  */
-@DependsOn("dependsOn2")
+//@DependsOn("dependsOn2")
 @Data
 public class DependsOnDemo {
 

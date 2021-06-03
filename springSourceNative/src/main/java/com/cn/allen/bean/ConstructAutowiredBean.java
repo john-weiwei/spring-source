@@ -12,7 +12,7 @@ import javax.annotation.PreDestroy;
  * @Date:2020/12/30
  * @Description:
  */
-@Service
+//@Service
 @Data
 public class ConstructAutowiredBean {
     private Student student;

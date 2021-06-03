@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Date:2021/1/29
  * @Description:
  */
-@Component
+//@Component
 @ComponentScan(basePackageClasses = DataSourceConfiguration.class)
 public class ComponentScanOneBean {
 }

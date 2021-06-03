@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @Description:
  *
  */
-@Service
+//@Service
 @ComponentScan(value = "com.cn")
 public class ComponentScanBean {
 }

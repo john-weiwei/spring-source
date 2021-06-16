@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  * @Description:
  */
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
 
     @Override

@@ -7,7 +7,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Author:ZhangWeiWei
  * @Date:2021/5/26
  * @Description:
- * 内存溢出----
+ * 堆溢出----
+ * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError
+ * 设置堆内存的最小 -Xms、最大值 -Xmx
  */
 public class HeapOver {
     public static void main(String[] args) {

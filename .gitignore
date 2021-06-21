@@ -1,3 +1,4 @@
+springSourceNative/*.hprof
 springSourceNative/out/*
 .DS_Store
 tignore

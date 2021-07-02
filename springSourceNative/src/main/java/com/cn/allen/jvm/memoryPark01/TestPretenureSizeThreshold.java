@@ -22,6 +22,11 @@ public class TestPretenureSizeThreshold {
         byte[] all1;
         all1 = new byte[4 * _1M];
     }
+
+    public static void test() {
+        int num;
+//        System.out.println(num);
+    }
     /**
      * Serial收集器
      * Heap
